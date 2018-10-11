@@ -33,6 +33,7 @@ julia> robot, visual = getrobot("kukalwr")
 
 Robot | name
 ------------ | -------------
+generic Acrobot | acrobot
 KUKA LWR | kukalwr
 PUMA 560 | puma560
 DENSO VS -060 | denso060
