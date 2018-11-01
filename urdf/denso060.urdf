@@ -1,295 +1,238 @@
-<?xml version="1.0" ?>
-<robot name="vs060">
-	<material name="black">
-		<color rgba="0.2 0.2 0.2 1.0"/>
-	</material>
-	<material name="blue">
-		<color rgba="0.0 0.0 0.8 1.0"/>
-	</material>
-	<material name="green">
-		<color rgba="0.0 0.8 0.0 1.0"/>
-	</material>
-	<material name="grey">
-		<color rgba="0.2 0.2 0.2 1.0"/>
-	</material>
-	<material name="red">
-		<color rgba="0.8 0.0 0.0 1.0"/>
-	</material>
-	<material name="red_transparent">
-		<color rgba="0.8 0.0 0.0 0.5"/>
-	</material>
-	<material name="white">
-		<color rgba="1.0 1.0 1.0 1.0"/>
-	</material>
-	<material name="orange">
-		<color rgba="1.0 0.423529411765 0.0392156862745 1.0"/>
-	</material>
-	<material name="brown">
-		<color rgba="0.870588235294 0.811764705882 0.764705882353 1.0"/>
-	</material>
-	<material name="metal">
-		<color rgba="0.827450980392 0.827450980392 0.827450980392 1.0"/>
-	</material>
-	<material name="wood">
-		<color rgba="0.803921568627 0.521568627451 0.247058823529 1.0"/>
-	</material>
-	
-	<gazebo>
-		<plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-			<robotNamespace>/vs060</robotNamespace>
-		</plugin>
-	</gazebo>
-	<link name="world_1" />
-	<joint name="joint_w" type="fixed">
-		<parent link="world_1" />
-		<child link="base_link" />
-	</joint>
-	<link name="base_link">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/base_link.obj" scale="1 1 1" />
-			</geometry>
-			<material name="white"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/base_link.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<link name="J1">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J1.obj" scale="1 1 1" />
-			</geometry>
-			<material name="white"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J1.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<joint name="joint_1" type="revolute">
-		<parent link="base_link" />
-		<child link="J1" />
-		<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.181500" />
-		<axis xyz="-0.000000 -0.000000 1.000000" />
-		<limit effort="1" lower="-2.96706" upper="2.96706" velocity="3.92699081698724" />
-		<dynamics damping="0" friction="0" />
-	</joint>
-	<transmission name="trans_1">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="joint_1">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="motor_1">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
-	<link name="J2">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J2.obj" scale="1 1 1" />
-			</geometry>
-			<material name="white"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J2.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<joint name="joint_2" type="revolute">
-		<parent link="J1" />
-		<child link="J2" />
-		<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.163500" />
-		<axis xyz="-0.000000 1.000000 -0.000000" />
-		<limit effort="1" lower="-2.094395" upper="2.094395" velocity="2.61799387799149" />
-		<dynamics damping="0" friction="0" />
-	</joint>
-	<transmission name="trans_2">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="joint_2">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="motor_2">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
-	<link name="J3">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J3.obj" scale="1 1 1" />
-			</geometry>
-			<material name="white"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J3.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<joint name="joint_3" type="revolute">
-		<parent link="J2" />
-		<child link="J3" />
-		<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.305000" />
-		<axis xyz="-0.000000 1.000000 -0.000000" />
-		<limit effort="1" lower="-2.181662" upper="2.70526" velocity="2.85832571599111" />
-		<dynamics damping="0" friction="0" />
-	</joint>
-	<transmission name="trans_3">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="joint_3">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="motor_3">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
-	<link name="J4">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J4.obj" scale="1 1 1" />
-			</geometry>
-			<material name="white"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J4.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<joint name="joint_4" type="revolute">
-		<parent link="J3" />
-		<child link="J4" />
-		<origin rpy="0.000000 0.000000 0.000000" xyz="-0.010000 0.000000 0.164500" />
-		<axis xyz="-0.000000 -0.000000 1.000000" />
-		<limit effort="1" lower="-4.712389" upper="4.712389" velocity="3.92699081698724" />
-		<dynamics damping="0" friction="0" />
-	</joint>
-	<transmission name="trans_4">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="joint_4">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="motor_4">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
-	<link name="J5">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J5.obj" scale="1 1 1" />
-			</geometry>
-			<material name="black"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J5.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<joint name="joint_5" type="revolute">
-		<parent link="J4" />
-		<child link="J5" />
-		<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.135500" />
-		<axis xyz="-0.000000 1.000000 -0.000000" />
-		<limit effort="1" lower="-2.094395" upper="2.094395" velocity="3.02168853397778" />
-		<dynamics damping="0" friction="0" />
-	</joint>
-	<transmission name="trans_5">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="joint_5">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="motor_5">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
-	<link name="J6">
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J6.obj" scale="1 1 1" />
-			</geometry>
-			<material name="black"/>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://denso060/J6.obj" scale="1 1 1" />
-			</geometry>
-		</collision>
-		<inertial>
-			<mass value="1" />
-			<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.000000" />
-			<inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
-		</inertial>
-	</link>
-	<joint name="joint_6" type="revolute">
-		<parent link="J5" />
-		<child link="J6" />
-		<origin rpy="0.000000 0.000000 0.000000" xyz="0.000000 0.000000 0.070000" />
-		<axis xyz="-0.000000 -0.000000 1.000000" />
-		<limit effort="1" lower="-6.283185" upper="6.283185" velocity="6.28318530717959" />
-		<dynamics damping="0" friction="0" />
-	</joint>
-	<transmission name="trans_6">
-		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="joint_6">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-		</joint>
-		<actuator name="motor_6">
-			<hardwareInterface>PositionJointInterface</hardwareInterface>
-			<mechanicalReduction>1</mechanicalReduction>
-		</actuator>
-	</transmission>
+<?xml version="1.0"?>
+<robot name="vs060A1_AV6_NNN_NNN">
+  <link name="BASE">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/BASE_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/BASE_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1000" />
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <inertia ixx="20" ixy="0" ixz="0" iyy="20" iyz="0" izz="20"/>
+    </inertial>
+  </link>
+  <link name="J1">
+    <visual>
+      <origin xyz="0 4.04121e-17 0.182" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J1_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 4.04121e-17 0.182" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J1_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="4.327" />
+      <origin xyz="0.013885 -0.005997 0.043991" rpy="0 -0 0"/>
+      <inertia ixx="0.025492" ixy="0" ixz="0" iyy="0.032502" iyz="-3.26672e-18" izz="0.01779"/>
+    </inertial>
+  </link>
+  <link name="J2">
+    <visual>
+      <origin xyz="0 3.61933e-17 0.163" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J2_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 3.61933e-17 0.163" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J2_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="9.475" />
+      <origin xyz="0.015837 -0.073696 0.010087" rpy="0 -0 0"/>
+      <inertia ixx="0.108024" ixy="0" ixz="0" iyy="0.025579" iyz="1.93827e-17" izz="0.112871"/>
+    </inertial>
+  </link>
+  <link name="J3">
+    <visual>
+      <origin xyz="0 6.77236e-17 0.305" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J3_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 6.77236e-17 0.305" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J3_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="4.097" />
+      <origin xyz="0.011544 -0.057408 0.006203" rpy="0 -0 0"/>
+      <inertia ixx="0.015999" ixy="0" ixz="0" iyy="0.00638" iyz="2.33191e-18" izz="0.016882"/>
+    </inertial>
+  </link>
+  <link name="J4">
+    <visual>
+      <origin xyz="-0.01 3.66374e-17 0.165" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J4_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.01 3.66374e-17 0.165" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J4_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.779" />
+      <origin xyz="0.003998 -0.004975 0.052919" rpy="0 -0 0"/>
+      <inertia ixx="0.005106" ixy="0" ixz="0" iyy="0.005266" iyz="-5.87308e-19" izz="0.002621"/>
+    </inertial>
+  </link>
+  <link name="J5">
+    <visual>
+      <origin xyz="0 2.9976e-17 0.135" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J5_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 2.9976e-17 0.135" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/J5_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.211" />
+      <origin xyz="0.011902 -0.004739 0.010398" rpy="0 -0 0"/>
+      <inertia ixx="0.001093" ixy="0" ixz="0" iyy="0.001629" iyz="-3.10862e-21" izz="0.001615"/>
+    </inertial>
+  </link>
+  <link name="Flange">
+    <visual>
+      <origin xyz="0 1.55431e-17 0.07" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/Flange_mesh.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 1.55431e-17 0.07" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://denso060/Flange_mesh.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="4.154" />
+      <origin xyz="-0.000401015 0.0770342 0.0962886" rpy="0 -0 0"/>
+      <inertia ixx="0.0216473" ixy="-0.000147026" ixz="-0.00011778" iyy="0.0346876" iyz="0.00159321" izz="0.022927"/>
+    </inertial>
+  </link>
+  <transmission name="j1" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="j1_motor"/>
+    <joint name="j1"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <link name="base_link"/>
+  <joint name="base_link_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="BASE"/>
+  </joint>
+  <joint name="j1" type="revolute">
+    <parent link="BASE"/>
+    <child  link="J1"/>
+    <origin xyz="0 4.04121e-17 0.182" rpy="0 -0 0 "/>
+    <axis   xyz="0 0 1"/>
+    <limit lower="-2.96706" upper="2.96706" effort="19.7336" velocity="0.5" />
+    <safety_controller k_position="1"
+      k_velocity="1"
+      soft_lower_limit="-2.96"
+      soft_upper_limit="2.96" />
+<limit lower="-2.96706" upper="2.96706" effort="19.7336" velocity="0.5" />
+  </joint>
+  <transmission name="j2" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="j2_motor"/>
+    <joint name="j2"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <joint name="j2" type="revolute">
+    <parent link="J1"/>
+    <child  link="J2"/>
+    <origin xyz="0 3.61933e-17 0.163" rpy="0 -0 0 "/>
+    <axis   xyz="0 1 0"/>
+    <limit lower="-2.0944" upper="2.0944" effort="16.8447" velocity="0.5" />
+    <safety_controller k_position="1"
+      k_velocity="1"
+      soft_lower_limit="-2.09"
+      soft_upper_limit="2.09" />
+  </joint>
+  <transmission name="j3" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="j3_motor"/>
+    <joint name="j3"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <joint name="j3" type="revolute">
+    <parent link="J2"/>
+    <child  link="J3"/>
+    <origin xyz="0 6.77236e-17 0.305" rpy="0 -0 0 "/>
+    <axis   xyz="0 1 0"/>
+    <limit lower="-2.18166" upper="2.70526" effort="20.7089" velocity="0.5" />
+    <safety_controller k_position="1"
+      k_velocity="1"
+      soft_lower_limit="-2.15"
+      soft_upper_limit="2.7" />
+  </joint>
+  <transmission name="j4" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="j4_motor"/>
+    <joint name="j4"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <joint name="j4" type="revolute">
+    <parent link="J3"/>
+    <child  link="J4"/>
+    <origin xyz="-0.01 3.66374e-17 0.165" rpy="0 -0 0 "/>
+    <axis   xyz="0 0 1"/>
+    <limit lower="-4.71239" upper="4.71239" effort="20.9665" velocity="0.5" />
+    <safety_controller k_position="1"
+      k_velocity="1"
+      soft_lower_limit="-4.71"
+      soft_upper_limit="4.71" />
+  </joint>
+  <transmission name="j5" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="j5_motor"/>
+    <joint name="j5"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <joint name="j5" type="revolute">
+    <parent link="J4"/>
+    <child  link="J5"/>
+    <origin xyz="0 2.9976e-17 0.135" rpy="0 -0 0 "/>
+    <axis   xyz="0 1 0"/>
+    <limit lower="-2.0944" upper="2.0944" effort="23.7229" velocity="0.5" />
+    <safety_controller k_position="1"
+      k_velocity="1"
+      soft_lower_limit="-2.09"
+      soft_upper_limit="2.09" />
+  </joint>
+  <transmission name="flange" type="pr2_mechanism_model/SimpleTransmission">
+    <actuator name="flange_motor"/>
+    <joint name="flange"/>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+  <joint name="flange" type="revolute">
+    <parent link="J5"/>
+    <child  link="Flange"/>
+    <origin xyz="0 1.55431e-17 0.07" rpy="0 -0 0 "/>
+    <axis   xyz="0 0 1"/>
+    <limit lower="-6.28319" upper="6.28319" effort="33.5103" velocity="0.5" />
+    <safety_controller k_position="1"
+      k_velocity="1"
+      soft_lower_limit="-6.28"
+      soft_upper_limit="6.28" />
+  </joint>
 </robot>
