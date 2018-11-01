@@ -5,7 +5,7 @@
 <!-- |    Forked from: https://github.com/cpaxton/universal_robot                      | -->
 <!-- |    Origin from: https://github.com/ros-industrial/universal_robot               | -->
 <!-- =================================================================================== -->
-<robot name="ur5" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="ur5" >
   <material name="UR/Blue">
     <color rgba="0.0 0.0 0.8 1.0"/>
   </material>
@@ -34,16 +34,14 @@
       <geometry>
         <mesh filename="package://ur5/collision/Base.obj"/>
       </geometry>
-      <!-- <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.009159"/> -->
+    
     </collision>
     <inertial>
       <mass value="4.0"/>
       <inertia ixx="0.004433" ixy="0.0" ixz="0.0" iyy="0.00443333156" iyz="0.0" izz="0.0072"/>
     </inertial>
   </link> 
-<!-- <inertia ixx="0.0833333 * 4.0 * (3 * 0.06 * 0.06 + 0.05 * 0.05)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 4.0 * (3 * 0.06 * 0.06 + 0.05 * 0.05)" iyz="0.0"
-        izz="0.5 * 4.0 * 0.06 * 0.06" /> -->
+
   <joint name="shoulder_pan_joint" type="revolute">
     <parent link="base_link"/>
     <child link="shoulder_link"/>
@@ -62,7 +60,7 @@
       <geometry>
         <mesh filename="package://ur5/collision/Shoulder.obj"/>
       </geometry>
-      <!-- <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.009159"/> -->
+  
     </collision>
     <inertial>
       <mass value="3.7"/>
@@ -70,9 +68,7 @@
  	    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.00193 -0.02561"/>
     </inertial>
   </link>
-<!--<inertia ixx="0.0833333 * 3.7 * (3 * 0.06 * 0.06 + 0.15 * 0.15)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 3.7 * (3 * 0.06 * 0.06 + 0.15 * 0.15)" iyz="0.0"
-        izz="0.5 * 3.7 * 0.06 * 0.06" /> -->
+
   <joint name="shoulder_lift_joint" type="revolute">
     <parent link="shoulder_link"/>
     <child link="upper_arm_link"/>
@@ -92,7 +88,7 @@
       <geometry>
         <mesh filename="package://ur5/collision/UpperArm.obj"/>
       </geometry>
-      <!--       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.2125"/> -->
+  
     </collision>
     <inertial>
       <mass value="8.393"/>
@@ -100,9 +96,7 @@
       <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.024201 0.2125"/>  
       </inertial>
   </link>
- <!--    <inertia ixx="0.0833333 * 8.393 * (3 * 0.06 * 0.06 + 0.56 * 0.56)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 8.393 * (3 * 0.06 * 0.06 + 0.56 * 0.56)" iyz="0.0"
-        izz="0.5 * 8.393 * 0.06 * 0.06" />-->
+ 
   <joint name="elbow_joint" type="revolute">
     <parent link="upper_arm_link"/>
     <child link="forearm_link"/>
@@ -121,7 +115,6 @@
       <geometry>
         <mesh filename="package://ur5/collision/Forearm.obj"/>
       </geometry>
-      <!--       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.196125"/> -->
     </collision>
     <inertial>
       <mass value="2.275"/>
@@ -129,9 +122,7 @@
        <inertia ixx="0.049443313556" ixy="0.0" ixz="0.0" iyy="0.049443313556" iyz="0.0" izz="0.004095" />
     </inertial>
   </link>
- <!--    <inertia ixx="0.0833333 * 2.275 * (3 * 0.06 * 0.06 + 0.5 * 0.5)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 2.275 * (3 * 0.06 * 0.06 + 0.5 * 0.5)" iyz="0.0"
-        izz="0.5 * 2.275 * 0.06 * 0.06" /> -->
+ 
   <joint name="wrist_1_joint" type="revolute">
     <parent link="forearm_link"/>
     <child link="wrist_1_link"/>
@@ -159,9 +150,7 @@
       <inertia ixx="0.11117275553088" ixy="0.0" ixz="0.0" iyy="0.11117275553088" iyz="0.0" izz="0.21942" />
     </inertial>
   </link>
-<!--    <inertia ixx="0.0833333 * 1.219 * (3 * 0.6 * 0.6 + 0.12 * 0.12)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 1.219 * (3 * 0.6 * 0.6 + 0.12 * 0.12)" iyz="0.0"
-        izz="0.5 * 1.219 * 0.6 * 0.6" /> -->
+
   <joint name="wrist_2_joint" type="revolute">
     <parent link="wrist_1_link"/>
     <child link="wrist_2_link"/>
@@ -189,9 +178,7 @@
       <inertia ixx="0.11117275553088" ixy="0.0" ixz="0.0" iyy="0.11117275553088" iyz="0.0" izz="0.21942" />
     </inertial>
   </link>
-<!--    <inertia ixx="0.0833333 * 1.219 * (3 * 0.6 * 0.6 + 0.12 * 0.12)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 1.219 * (3 * 0.6 * 0.6 + 0.12 * 0.12)" iyz="0.0"
-        izz="0.5 * 1.219 * 0.6 * 0.6" /> -->
+
   <joint name="wrist_3_joint" type="revolute">
     <parent link="wrist_2_link"/>
     <child link="wrist_3_link"/>
@@ -217,9 +204,7 @@
       <inertia ixx="0.017136473145408" ixy="0.0" ixz="0.0" iyy="0.017136473145408" iyz="0.0" izz="0.033822" />
     </inertial>
   </link>
-<!--     <inertia ixx="0.0833333 * 0.1879 * (3 * 0.6 * 0.6 + 0.12 * 0.12)" ixy="0.0" ixz="0.0"
-        iyy="0.0833333 * 0.1879 * (3 * 0.6 * 0.6 + 0.12 * 0.12)" iyz="0.0"
-        izz="0.5 * 0.1879 * 0.6 * 0.6" />-->
+
 
   <joint name="ee_fixed_joint" type="revolute">
     <parent link="wrist_3_link"/>
@@ -249,71 +234,9 @@
         iyy="0.000000004" iyz="0.0"
         izz="0.000000004"/>
     </inertial>
-<!--
-     <mass value="5"/>
-      <inertia
-        ixx="0.002083333" ixy="0.0" ixz="0.0"
-        iyy="0.002083333" iyz="0.0"
-        izz="0.002083333"/>
-    </inertial> -->
-</link>
-<!--
-  <link name="ee_link">
-	 <collision>
-      <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.0 0.0 0.0"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.0 0.0 0.0"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-      <mass value="0"/>
-      <inertia
-        ixx="0.03" ixy="0.0" ixz="0.0"
-        iyy="0.0" iyz="0.0"
-        izz="0.0"/>
-    </inertial>
-  </link>
-  <joint name="ee_object_joint" type="revolute">
-	<parent link="ee_link"/>
-	 <child link="object_link"/>
-	 <origin rpy="0.0 0.0 0" xyz="0.0 0.0 0.0"/>
-	 <axis xyz="0 1 0"/>
-    	 <limit effort="0.0" lower="0" upper="0" velocity="0"/>	
-  </joint>
-  <link name="object_link">
-    <collision>
-      <origin xyz="0.025 0 0.0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.05 0.05 0.05"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin xyz="0.025 0 0.0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.05 0.05 0.05"/>
-      </geometry>
-    </visual>
-    <inertial>
-      <origin xyz="0.025 0.025 0.025" rpy="0 0 0"/>
-      <mass value="5"/>
-      <inertia
-        ixx="0.002083333" ixy="0.0" ixz="0.0"
-        iyy="0.002083333" iyz="0.0"
-        izz="0.002083333"/>
-    </inertial>
-</link>-->
 
-<!--  <xacro:ur_arm_transmission name=""/>-->
-  <!--gazebo reference="universal_robot">
-    <material>Gazebo/Blue</material>
-  </gazebo-->
+</link>
+
 </robot>
 
 
