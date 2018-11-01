@@ -13,7 +13,8 @@ meshepath() = joinpath(@__DIR__, "..", "meshes")
 const robots = ["kukalwr",
                 "denso060",
                 "puma560",
-                "acrobot"]
+                "acrobot",
+                "kuka-lwr-4plus"]
 
 urdf(robot_name::String) = joinpath(urdfpath(), robot_name * ".urdf")
 
