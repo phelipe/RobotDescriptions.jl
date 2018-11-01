@@ -10,11 +10,11 @@ export getmechanism, getvisual, getrobot
 urdfpath() = joinpath(@__DIR__, "..", "urdf")
 meshepath() = joinpath(@__DIR__, "..", "meshes")
 
-const robots = ["kukalwr",
-                "denso060",
+const robots = ["denso060",
                 "puma560",
                 "acrobot",
-                "kuka-lwr-4plus"]
+                "kuka-lwr-4plus",
+                "ur5"]
 
 urdf(robot_name::String) = joinpath(urdfpath(), robot_name * ".urdf")
 
